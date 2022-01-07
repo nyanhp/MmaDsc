@@ -1,0 +1,5 @@
+﻿enum ensure
+{
+    Absent
+    Present
+}

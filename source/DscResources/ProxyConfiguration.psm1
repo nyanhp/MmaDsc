@@ -1,10 +1,4 @@
-﻿enum ensure
-{
-    Absent
-    Present
-}
-
-[DscResource()]
+﻿[DscResource()]
 class ProxyConfiguration
 {
     [DscProperty(Key)]

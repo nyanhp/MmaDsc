@@ -1,10 +1,4 @@
-﻿enum ensure
-{
-    Absent
-    Present
-}
-
-[DscResource()]
+﻿[DscResource()]
 class WorkspaceConfiguration
 {
     [DscProperty(Key)]
@@ -51,6 +45,13 @@ class WorkspaceConfiguration
     [void] Set()
     {
         $agentCfg = New-Object -ComObject AgentConfigManager.MgmtSvcCfg
+
+        if ($this.Ensure -eq 'Absent')
+        {
+            $agentCfg.RemoveCloudWorkspace($this.WorkspaceId)
+            $agentCfg.ReloadConfigurations()
+            return
+        }
     
         if ($this.ProxyUri)
         {
@@ -68,7 +69,7 @@ class WorkspaceConfiguration
 
         $agentCfg.AddCloudWorkspace($this.WorkspaceId, $this.WorkspaceKey.GetNetworkCredential().Password)
 
-        Restart-Service -Name HealthService -Force
+        $agentCfg.ReloadConfigurations()
     }
     
     # Tests if the resource is in the desired state.
