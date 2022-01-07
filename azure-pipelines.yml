@@ -27,12 +27,12 @@ stages:
         pool:
           vmImage: 'windows-2022'
         steps:
-          - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
-            displayName: gitversion/setup
+          - task: GitVersion@5
+            name: gitVersion
+            displayName: 'Evaluate Next Version'
             inputs:
-              versionSpec: 5.0.x
-          - task: gittools.gittools.execute-gitversion-task.gitversion/execute@0
-            displayName: gitversion/execute
+              runtime: 'core'
+              configFilePath: 'GitVersion.yml'
           - task: PowerShell@2
             name: package
             displayName: 'Build & Package Module'
