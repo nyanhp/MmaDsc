@@ -25,7 +25,7 @@ stages:
       - job: Package_Module
         displayName: 'Package Module'
         pool:
-          vmImage: 'ubuntu 16.04'
+          vmImage: 'windows-2022'
         steps:
           - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
             displayName: gitversion/setup
@@ -122,7 +122,7 @@ stages:
       #- job: Test_Unit_Linux
       #  displayName: 'Unit Linux'
       #  pool:
-      #    vmImage: 'ubuntu 16.04'
+      #    vmImage: 'windows-2022'
       #  timeoutInMinutes: 0
       #  steps:
       #    - task: DownloadPipelineArtifact@2
@@ -192,7 +192,7 @@ stages:
         displayName: 'Publish Code Coverage'
         dependsOn: Test_Unit
         pool:
-          vmImage: 'ubuntu 16.04'
+          vmImage: 'windows-2022'
         timeoutInMinutes: 0
         steps:
           - pwsh: |
@@ -253,7 +253,7 @@ stages:
       - job: Deploy_Module
         displayName: 'Deploy Module'
         pool:
-          vmImage: 'ubuntu 16.04'
+          vmImage: 'windows-2022'
         steps:
           - task: DownloadPipelineArtifact@2
             displayName: 'Download Pipeline Artifact'
