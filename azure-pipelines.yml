@@ -35,7 +35,7 @@ stages:
               arguments: '-ResolveDependency -tasks pack'
               pwsh: true
             env:
-              ModuleVersion: $(gitVersion.NuGetVersionV2)
+              ModuleVersion: 1.4.0
           - task: PublishPipelineArtifact@1
             displayName: 'Publish Build Artifact'
             inputs:
